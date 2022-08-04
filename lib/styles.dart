@@ -22,9 +22,6 @@ enum AppColor {
 }
 
 class AppStyleCore {
-  static double smallPhoneVh = 667;
-  static double maxIphoneVW = 428;
-
   static Map<AppColor, Color> colors = {
     AppColor.lightGrey: colorFromHex('#ffe5e5'),
     AppColor.blueSuperBright: colorFromHex('#d3d8ff'),
