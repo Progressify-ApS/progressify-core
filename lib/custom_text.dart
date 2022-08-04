@@ -33,6 +33,7 @@ enum TextType {
 class CustomText extends StatelessWidget {
   final String? fontFamily;
   final String text;
+  final double? sizeOverride;
   final TextType textType;
   final Color color;
   final EdgeInsets? margin;
@@ -51,11 +52,12 @@ class CustomText extends StatelessWidget {
       this.letterSpacing,
       this.margin = EdgeInsets.zero,
       this.textAlign,
-      this.lineSpacing = 1.5,
+      this.lineSpacing,
       this.maxLines,
       this.overflow = TextOverflow.visible,
       this.fontStyle = FontStyle.normal,
       this.decoration = TextDecoration.none,
+      this.sizeOverride,
       Key? key})
       : color = color ?? AppStyleCore.black,
         super(key: key);
@@ -65,71 +67,49 @@ class CustomText extends StatelessWidget {
         Theme.of(NavigationService.instance.navigatorKey.currentContext!)
             .textTheme;
     switch (textType) {
-      case TextType.h1: //w900,42,
+      case TextType.h1:
         return textTheme.headline1;
-      case TextType.h1Bold: //w900,42,
-        return textTheme.headline1
-            ?.copyWith(fontWeight: FontWeight.w800, fontSize: 42);
-      case TextType.h2Bold: //w600,32
-        return textTheme.headline2
-            ?.copyWith(fontSize: 32, fontWeight: FontWeight.w700);
-      case TextType.h2Heavy: //w600,32
-        return textTheme.headline2
-            ?.copyWith(fontSize: 32, fontWeight: FontWeight.w900);
-      case TextType.h3: //20
-        return textTheme.headline3?.copyWith(fontSize: 22);
-      case TextType.h3Bold: //w700, 20
-        return textTheme.headline3
-            ?.copyWith(fontWeight: FontWeight.w800, fontSize: 22);
-      case TextType.h3Heavy: //w700, 20
-        return textTheme.headline3
-            ?.copyWith(fontWeight: FontWeight.w900, fontSize: 22);
-      case TextType.dialogTitle: //w700, 20
-        return textTheme.headline3
-            ?.copyWith(fontWeight: FontWeight.w800, fontSize: 22);
-      case TextType.h4: //w600, 18
-        return textTheme.headline4?.copyWith(fontSize: 18);
-      case TextType.h4Bold: //w700, 18
-        return textTheme.headline4
-            ?.copyWith(fontWeight: FontWeight.w800, fontSize: 18);
-      case TextType.h4Heavy: //w700, 18
-        return textTheme.headline4
-            ?.copyWith(fontWeight: FontWeight.w900, fontSize: 18);
-      case TextType.h4SemiBold: //w700, 18
-        return textTheme.headline4
-            ?.copyWith(fontWeight: FontWeight.w700, fontSize: 18);
-      case TextType.h5: //w400,16
+      case TextType.h1Bold:
+        return textTheme.headline1?.copyWith(fontWeight: FontWeight.w800);
+      case TextType.h2Bold:
+        return textTheme.headline2?.copyWith(fontWeight: FontWeight.w800);
+      case TextType.h2Heavy:
+        return textTheme.headline2?.copyWith(fontWeight: FontWeight.w900);
+      case TextType.h3:
+        return textTheme.headline3;
+      case TextType.h3Bold:
+        return textTheme.headline3?.copyWith(fontWeight: FontWeight.w800);
+      case TextType.h3Heavy:
+        return textTheme.headline3?.copyWith(fontWeight: FontWeight.w900);
+      case TextType.dialogTitle:
+        return textTheme.headline3?.copyWith(fontWeight: FontWeight.w800);
+      case TextType.h4:
+        return textTheme.headline4;
+      case TextType.h4Bold:
+        return textTheme.headline4?.copyWith(fontWeight: FontWeight.w800);
+      case TextType.h4Heavy:
+        return textTheme.headline4?.copyWith(fontWeight: FontWeight.w900);
+      case TextType.h4SemiBold:
+        return textTheme.headline4?.copyWith(fontWeight: FontWeight.w700);
+      case TextType.h5:
+        return textTheme.headline5;
+      case TextType.h5Bold:
         return textTheme.headline5?.copyWith(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        );
-      case TextType.h5Bold: //w700, 16
-        return textTheme.headline5?.copyWith(
-          fontSize: 14,
           fontWeight: FontWeight.w900,
         );
-      case TextType.h5SemiBold: //w700, 16
+      case TextType.h5SemiBold:
         return textTheme.headline5?.copyWith(
-          fontSize: 14,
           fontWeight: FontWeight.w800,
         );
-      case TextType.body: //w500, 15
-        return textTheme.bodyText1
-            ?.copyWith(fontSize: 14, fontWeight: FontWeight.w400);
-      case TextType.caption: //w500, 14
-        return textTheme.headline5?.copyWith(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        );
-      case TextType.captionBold: //w600, 14
-        return textTheme.headline5?.copyWith(
-            fontSize: 14, fontWeight: FontWeight.w600
-            //letterSpacing: 1.1 removed this on purpose, we like it better without
-            );
+      case TextType.body:
+        return textTheme.bodyText1;
+      case TextType.caption:
+        return textTheme.caption;
+      case TextType.captionBold:
+        return textTheme.caption?.copyWith(fontWeight: FontWeight.w600);
       case TextType.captionMini: //w500, 14
-        return textTheme.headline5?.copyWith(
+        return textTheme.caption?.copyWith(
           fontSize: 12,
-          fontWeight: FontWeight.w500,
         );
       case TextType.captionMiniBold: //w500, 14
         return textTheme.headline5?.copyWith(
@@ -147,18 +127,14 @@ class CustomText extends StatelessWidget {
           fontWeight: FontWeight.w200,
         );
       case TextType.timerCountdown:
-        return textTheme.bodyText1?.copyWith(
+        return textTheme.headline1?.copyWith(
           fontSize: 40,
           fontWeight: FontWeight.w700,
         );
       case TextType.button:
-        return textTheme.headline5?.copyWith(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        );
+        return textTheme.button;
       default:
-        return textTheme.bodyText1
-            ?.copyWith(fontSize: 15, fontWeight: FontWeight.w500);
+        return textTheme.bodyText1;
     }
   }
 
@@ -171,14 +147,14 @@ class CustomText extends StatelessWidget {
       child: Text(
         text,
         style: ctStyle.copyWith(
-          letterSpacing: letterSpacing,
-          fontStyle: fontStyle,
-          color: color,
-          height: lineSpacing ?? 1.0,
-          fontFamily: fontFamily,
-          fontFamilyFallback: ['Roboto'],
-          decoration: decoration,
-        ),
+            letterSpacing: letterSpacing,
+            fontStyle: fontStyle,
+            color: color,
+            height: lineSpacing ?? 1.0,
+            fontFamily: fontFamily,
+            fontFamilyFallback: ['Roboto'],
+            decoration: decoration,
+            fontSize: sizeOverride),
         textAlign: textAlign,
         maxLines: maxLines,
         overflow: overflow,
