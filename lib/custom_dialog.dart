@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_it/get_it.dart';
 
 import '../styled_buttons.dart';
 import '../styles.dart';
@@ -49,7 +48,7 @@ class CustomDialog extends StatelessWidget {
 class CustomAlertDialog extends StatelessWidget {
   static Future showInfo(
       {String? identifier, required String title, required String message}) {
-    return GetIt.instance<NavigationService>().showDialog(
+    return NavigationService.instance.showDialog(
       child: CustomAlertDialog(
         constraints: const BoxConstraints.tightFor(width: 400),
         insetPadding: const EdgeInsets.all(16),
