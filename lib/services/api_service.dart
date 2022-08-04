@@ -5,17 +5,18 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static initialize(String apiUrl, {String? debugApiUrl}) =>
-      GetIt.instance.registerSingleton<ApiService>(
-          ApiService(apiUrl, debugApiUrl: debugApiUrl ?? apiUrl));
+  static initialize(String apiUrl,
+          {String? debugApiUrl, Map<String, dynamic>? authHeader}) =>
+      GetIt.instance.registerSingleton<ApiService>(ApiService(apiUrl,
+          debugApiUrl: debugApiUrl ?? apiUrl, authHeader: authHeader));
 
-  ApiService(this.apiUrl, {this.debugApiUrl});
+  ApiService(this.apiUrl, {this.debugApiUrl, this.authHeader});
 
   static ApiService get instance => GetIt.instance<ApiService>();
 
   late String apiUrl;
   String? debugApiUrl;
-  Map<String, String>? authHeader;
+  Map<String, dynamic>? authHeader;
 
   Future<ApiResponse> delete(String url,
       {Map<String, dynamic>? headers}) async {
