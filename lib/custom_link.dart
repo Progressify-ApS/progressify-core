@@ -31,7 +31,7 @@ class CustomLink extends StatelessWidget {
       this.overflow = TextOverflow.visible,
       Key? key})
       : url = url ?? '',
-        color = color ?? AppStyle.black,
+        color = color ?? AppStyleCore.black,
         super(key: key);
 
   @override

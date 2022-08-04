@@ -34,7 +34,13 @@ class CustomDialog extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Container(
         constraints: constraints,
-        decoration: AppStyle.radialGradientDecoration.copyWith(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            colors: [
+              Colors.grey[100] as Color,
+              Colors.white,
+            ],
+          ),
           borderRadius: BorderRadius.all(
             Radius.circular(borderRadius),
           ),
@@ -54,7 +60,7 @@ class CustomAlertDialog extends StatelessWidget {
         insetPadding: const EdgeInsets.all(16),
         icon: FaIcon(
           FontAwesomeIcons.circleInfo,
-          color: AppStyle.primaryRed,
+          color: AppStyleCore.primaryRed,
           size: 48,
         ),
         title: CustomText(
@@ -126,7 +132,7 @@ class CustomAlertDialog extends StatelessWidget {
             else
               Icon(
                 Icons.check_circle,
-                color: AppStyle.primaryRed,
+                color: AppStyleCore.primaryRed,
                 size: 64,
               ),
             //
@@ -234,7 +240,7 @@ class CustomChoiceDialog extends StatelessWidget {
               Icon(
                 CupertinoIcons.question_circle,
                 size: 64,
-                color: AppStyle.primaryRed,
+                color: AppStyleCore.primaryRed,
               ),
 
             ///Leaving this as a pattern if you choose to use an image
@@ -290,7 +296,7 @@ class CustomChoiceDialog extends StatelessWidget {
                         child: CustomText(
                           'Cancel',
                           textType: TextType.button,
-                          color: AppStyle.white,
+                          color: AppStyleCore.white,
                         ),
                       )
                   ],
@@ -326,7 +332,7 @@ class CustomChoiceDialog extends StatelessWidget {
                             child: CustomText(
                               'Cancel',
                               textType: TextType.button,
-                              color: AppStyle.white,
+                              color: AppStyleCore.white,
                             ),
                           ),
                     ),

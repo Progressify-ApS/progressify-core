@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progressify_core/services/navigation/navigation_service.dart';
 
 import '../styles.dart';
 
@@ -56,14 +57,13 @@ class CustomText extends StatelessWidget {
       this.fontStyle = FontStyle.normal,
       this.decoration = TextDecoration.none,
       Key? key})
-      : color = color ?? AppStyle.black,
+      : color = color ?? AppStyleCore.black,
         super(key: key);
 
-  static TextStyle? style(TextType textType,
-      {BuildContext? context, Color? color}) {
-    TextTheme textTheme = context != null
-        ? Theme.of(context).textTheme
-        : AppStyle.textTheme(color: color ?? AppStyle.black);
+  static TextStyle? style(TextType textType, {Color? color}) {
+    TextTheme textTheme =
+        Theme.of(NavigationService.instance.navigatorKey.currentContext!)
+            .textTheme;
     switch (textType) {
       case TextType.h1: //w900,42,
         return textTheme.headline1;
@@ -164,13 +164,13 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = CustomText.style(textType) as TextStyle;
+    TextStyle ctStyle = style(textType) as TextStyle;
 
     return Container(
       margin: margin,
       child: Text(
         text,
-        style: style.copyWith(
+        style: ctStyle.copyWith(
           letterSpacing: letterSpacing,
           fontStyle: fontStyle,
           color: color,

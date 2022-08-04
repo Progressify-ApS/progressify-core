@@ -25,7 +25,7 @@ class StyledButton extends StatelessWidget {
       this.cornerRadius = 8,
       this.constraints,
       Key? key})
-      : color = color ?? AppStyle.primaryRed,
+      : color = color ?? AppStyleCore.primaryRed,
         elevated = false,
         super(key: key);
 
@@ -40,7 +40,7 @@ class StyledButton extends StatelessWidget {
       this.cornerRadius = 6,
       this.constraints,
       Key? key})
-      : color = color ?? AppStyle.grey,
+      : color = color ?? AppStyleCore.grey,
         elevated = false,
         super(key: key);
 
@@ -55,7 +55,7 @@ class StyledButton extends StatelessWidget {
       this.cornerRadius = 6,
       this.constraints,
       Key? key})
-      : color = color ?? AppStyle.primaryRed,
+      : color = color ?? AppStyleCore.primaryRed,
         elevated = true,
         super(key: key);
 
@@ -121,7 +121,7 @@ class StyledElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           elevation: elevation,
-          shape: AppStyle.mainButtonShape,
+          shape: AppStyleCore.mainButtonShape,
           padding: EdgeInsets.zero,
         ),
         child: Container(
@@ -131,9 +131,9 @@ class StyledElevatedButton extends StatelessWidget {
               ? BoxDecoration(
                   borderRadius: BorderRadius.circular(cornerRadius),
                   color: color)
-              : AppStyle.linearGradientDecoration.copyWith(
+              : BoxDecoration(
                   borderRadius: BorderRadius.circular(cornerRadius),
-                ),
+                  color: AppStyleCore.primaryRed),
           child: Center(
             child: child,
           ),
@@ -173,7 +173,7 @@ class StyledFlatButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          shape: AppStyle.mainButtonShape,
+          shape: AppStyleCore.mainButtonShape,
           padding: EdgeInsets.zero,
         ),
         child: Container(
@@ -183,9 +183,9 @@ class StyledFlatButton extends StatelessWidget {
               ? BoxDecoration(
                   borderRadius: BorderRadius.circular(cornerRadius),
                   color: color)
-              : AppStyle.linearGradientDecoration.copyWith(
+              : BoxDecoration(
                   borderRadius: BorderRadius.circular(cornerRadius),
-                ),
+                  color: AppStyleCore.primaryRed),
           child: Center(
             child: child,
           ),
