@@ -29,7 +29,7 @@ class NavigationService {
           .registerSingleton<NavigationService>(NavigationService(routes));
 
   ///NavigationService.initialize must be called before using this
-  NavigationService get instance => GetIt.instance<NavigationService>();
+  static NavigationService get instance => GetIt.instance<NavigationService>();
 
   ///In your MaterialApp, add this to the navigatorKey
   ///Eg. navigatorKey: NavigationService.instance.navigatorKey
