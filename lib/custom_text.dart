@@ -107,30 +107,20 @@ class CustomText extends StatelessWidget {
         return textTheme.caption;
       case TextType.captionBold:
         return textTheme.caption?.copyWith(fontWeight: FontWeight.w600);
-      case TextType.captionMini: //w500, 14
-        return textTheme.caption?.copyWith(
-          fontSize: 12,
-        );
-      case TextType.captionMiniBold: //w500, 14
-        return textTheme.headline5?.copyWith(
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
-        );
+      case TextType.captionMini:
+        return textTheme.caption?.copyWith(fontSize: 12);
+      case TextType.captionMiniBold:
+        return textTheme.caption
+            ?.copyWith(fontSize: 12, fontWeight: FontWeight.w700);
       case TextType.newT:
-        return textTheme.bodyText1?.copyWith(
-          fontSize: 13.5,
-          fontWeight: FontWeight.w300,
-        );
+        return textTheme.bodyText1
+            ?.copyWith(fontSize: 13.5, fontWeight: FontWeight.w300);
       case TextType.timer:
-        return textTheme.bodyText1?.copyWith(
-          fontSize: 19,
-          fontWeight: FontWeight.w200,
-        );
+        return textTheme.bodyText1
+            ?.copyWith(fontSize: 19, fontWeight: FontWeight.w200);
       case TextType.timerCountdown:
-        return textTheme.headline1?.copyWith(
-          fontSize: 40,
-          fontWeight: FontWeight.w700,
-        );
+        return textTheme.headline1
+            ?.copyWith(fontSize: 40, fontWeight: FontWeight.w700);
       case TextType.button:
         return textTheme.button;
       default:
