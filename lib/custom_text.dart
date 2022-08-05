@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:progressify_core/services/navigation/navigation_service.dart';
 
 import '../styles.dart';
+import 'services/navigation/navigation_service.dart';
 
 enum TextType {
   h1,

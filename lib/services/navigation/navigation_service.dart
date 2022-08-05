@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:get_it/get_it.dart';
 
-part 'navigation_animations.dart';
-
 class NavigationService {
   late final PageRoute Function(RouteSettings settings) routes;
 
