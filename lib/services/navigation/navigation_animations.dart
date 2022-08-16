@@ -1,4 +1,4 @@
-part of 'navigation_service.dart';
+import 'package:flutter/material.dart';
 
 class SlideUpRoute extends PageRouteBuilder {
   final Widget page;
