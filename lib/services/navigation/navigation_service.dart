@@ -87,7 +87,7 @@ class NavigationService {
     return result;
   }
 
-  Future<Object> showModalBottomSheet({
+  Future<Object?> showModalBottomSheet({
     required Widget child,
     BuildContext? context,
     Color? backgroundColor,
@@ -105,7 +105,7 @@ class NavigationService {
   }) async {
     log('Showing modalBottomSheet $identifier', origin: 'NavigationService');
     addToRouteStackRecord(identifier);
-    Object result = await material.showModalBottomSheet(
+    Object? result = await material.showModalBottomSheet(
         routeSettings: RouteSettings(name: identifier),
         context: context ?? navigatorKey.currentContext as BuildContext,
         builder: (BuildContext dialogContext) {
