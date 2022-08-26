@@ -16,11 +16,18 @@ class LogService {
           time: time ?? DateTime.now(),
           error: error,
           stackTrace: stackTrace);
-      dev.log(
-        '${{'error': error, 'stackTrace': stackTrace}}',
-        name: origin ?? 'Log Service',
-        time: time ?? DateTime.now(),
-      );
+      if (error != null || stackTrace != null) {
+        dev.log(
+          '${{
+            if (error != null) ...{
+              'error': error,
+            },
+            if (stackTrace != null) ...{'stackTrace': stackTrace}
+          }}',
+          name: origin ?? 'Log Service',
+          time: time ?? DateTime.now(),
+        );
+      }
     } else {
       dev.log(message.toString(),
           name: origin ?? 'Log Service',
