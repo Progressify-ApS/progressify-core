@@ -1,5 +1,7 @@
 import 'dart:developer' as dev;
 
+import 'package:flutter/foundation.dart';
+
 class LogService {
   static log(
     Object? message, {
@@ -8,10 +10,23 @@ class LogService {
     Object? error,
     StackTrace? stackTrace,
   }) {
-    dev.log(message.toString(),
+    if (kIsWeb) {
+      dev.log(message.toString(),
+          name: origin ?? 'Log Service',
+          time: time ?? DateTime.now(),
+          error: error,
+          stackTrace: stackTrace);
+      dev.log(
+        '${{'error': error, 'stackTrace': stackTrace}}',
         name: origin ?? 'Log Service',
         time: time ?? DateTime.now(),
-        error: error,
-        stackTrace: stackTrace);
+      );
+    } else {
+      dev.log(message.toString(),
+          name: origin ?? 'Log Service',
+          time: time ?? DateTime.now(),
+          error: error,
+          stackTrace: stackTrace);
+    }
   }
 }
