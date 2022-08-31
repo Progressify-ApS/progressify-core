@@ -20,7 +20,7 @@ class LogService {
         dev.log(
           '${{
             if (error != null) ...{
-              'error': error,
+              'data': error,
             },
             if (stackTrace != null) ...{'stackTrace': stackTrace}
           }}',
