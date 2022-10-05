@@ -39,7 +39,8 @@ class ServerTimeController with ChangeNotifier {
           '/api/Time/current/zone?timeZone=Europe/Copenhagen',
           {'timeZone': 'Europe/Copenhagen'});
       DateTime requestStart = DateTime.now();
-      http.Response response = await http.get(url);
+      http.Response response =
+          await http.get(url, headers: {'Access-Control-Allow-Origin': '*'});
       DateTime requestEnd = DateTime.now();
       if (response.statusCode == 200) {
         final jsonResponse = convert.jsonDecode(response.body);
