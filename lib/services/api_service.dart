@@ -67,7 +67,7 @@ class ApiService {
 
   Future<ApiResponse> patch(
     String url, {
-    required Map<String, dynamic> body,
+    required Object? body,
     Map<String, dynamic>? headers,
   }) async {
     Uri path;
@@ -94,7 +94,7 @@ class ApiService {
 
   Future<ApiResponse> post(
     String url, {
-    required Map<String, dynamic> body,
+    required Object? body,
     Map<String, dynamic>? headers,
   }) async {
     Uri path;
@@ -121,7 +121,7 @@ class ApiService {
 
   Future<ApiResponse> put(
     String url, {
-    Map<String, dynamic>? body,
+    Object? body,
     Map<String, dynamic>? headers,
   }) async {
     Uri path;
