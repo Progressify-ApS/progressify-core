@@ -44,7 +44,7 @@ class CustomText extends StatelessWidget {
   final TextOverflow overflow;
   final double? letterSpacing;
   final TextDecoration? decoration;
-
+  final bool selectable;
   CustomText(this.text,
       {this.textType = TextType.h5,
       Color? color,
@@ -58,6 +58,7 @@ class CustomText extends StatelessWidget {
       this.fontStyle = FontStyle.normal,
       this.decoration = TextDecoration.none,
       this.sizeOverride,
+      this.selectable = false,
       Key? key})
       : color = color ?? AppStyleCore.black,
         super(key: key);
@@ -134,21 +135,36 @@ class CustomText extends StatelessWidget {
 
     return Container(
       margin: margin,
-      child: Text(
-        text,
-        style: ctStyle.copyWith(
-            letterSpacing: letterSpacing,
-            fontStyle: fontStyle,
-            color: color,
-            height: lineSpacing ?? 1.0,
-            fontFamily: fontFamily,
-            fontFamilyFallback: ['Roboto'],
-            decoration: decoration,
-            fontSize: sizeOverride),
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      ),
+      child: selectable
+          ? SelectableText(
+              text,
+              style: ctStyle.copyWith(
+                  letterSpacing: letterSpacing,
+                  fontStyle: fontStyle,
+                  color: color,
+                  height: lineSpacing ?? 1.0,
+                  fontFamily: fontFamily,
+                  fontFamilyFallback: ['Roboto'],
+                  decoration: decoration,
+                  fontSize: sizeOverride),
+              textAlign: textAlign,
+              maxLines: maxLines,
+            )
+          : Text(
+              text,
+              style: ctStyle.copyWith(
+                  letterSpacing: letterSpacing,
+                  fontStyle: fontStyle,
+                  color: color,
+                  height: lineSpacing ?? 1.0,
+                  fontFamily: fontFamily,
+                  fontFamilyFallback: ['Roboto'],
+                  decoration: decoration,
+                  fontSize: sizeOverride),
+              textAlign: textAlign,
+              maxLines: maxLines,
+              overflow: overflow,
+            ),
     );
   }
 }
