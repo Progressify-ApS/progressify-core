@@ -6,15 +6,21 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   static initialize(String apiUrl,
-          {String? debugApiUrl, Map<String, dynamic>? authHeader}) =>
+          {String? debugApiUrl,
+          Map<String, dynamic>? authHeader,
+          debugIsHttps = false}) =>
       GetIt.instance.registerSingleton<ApiService>(ApiService(apiUrl,
-          debugApiUrl: debugApiUrl ?? apiUrl, authHeader: authHeader));
+          debugApiUrl: debugApiUrl ?? apiUrl,
+          authHeader: authHeader,
+          debugIsHttps: debugIsHttps));
 
-  ApiService(this.apiUrl, {this.debugApiUrl, this.authHeader});
+  ApiService(this.apiUrl,
+      {this.debugApiUrl, this.authHeader, this.debugIsHttps = false});
 
   static ApiService get instance => GetIt.instance<ApiService>();
 
   late String apiUrl;
+  final bool debugIsHttps;
   String? debugApiUrl;
   Map<String, dynamic>? authHeader;
 
@@ -23,7 +29,9 @@ class ApiService {
     Uri path;
     try {
       if (kDebugMode) {
-        path = Uri.http(debugApiUrl ?? apiUrl, url);
+        path = debugIsHttps
+            ? Uri.https(debugApiUrl ?? apiUrl, url)
+            : Uri.http(debugApiUrl ?? apiUrl, url);
       } else {
         path = Uri.https(apiUrl, url);
       }
