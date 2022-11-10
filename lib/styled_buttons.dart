@@ -194,3 +194,49 @@ class StyledFlatButton extends StatelessWidget {
     );
   }
 }
+
+class StyledOutlinedButton extends StatelessWidget {
+  final Function()? onPressed;
+  final Widget child;
+  final double height;
+  final EdgeInsets padding;
+  final EdgeInsets margin;
+  final Color? color;
+  final double cornerRadius;
+  final BoxConstraints? constraints;
+
+  const StyledOutlinedButton(
+      {Key? key,
+      this.onPressed,
+      required this.child,
+      required this.height,
+      required this.padding,
+      required this.margin,
+      this.constraints,
+      this.color,
+      this.cornerRadius = 6})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: margin,
+      constraints: constraints,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(cornerRadius)),
+            side: BorderSide(width: 1, color: color ?? Colors.black),
+            foregroundColor: color ?? Colors.black),
+        child: Container(
+          height: height,
+          padding: padding,
+          child: Center(
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
