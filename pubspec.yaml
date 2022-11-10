@@ -1,6 +1,6 @@
 name: progressify_core
 description: Core Reusables for Progressify
-version: 0.0.4
+version: 0.0.5
 homepage:
 
 environment:
@@ -17,7 +17,8 @@ dependencies:
   http: ^0.13.5
   simple_moment: ^1.1.1
   url_launcher: ^6.1.5
-
+dependency_overrides:
+  firebase_core_platform_interface: 4.5.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
