@@ -159,6 +159,6 @@ class ApiResponse {
   Object? body;
   int code;
   http.Response? rawResponse;
-
+  bool get success => code == 200 || code == 201;
   ApiResponse({required this.code, required this.rawResponse, this.body});
 }
